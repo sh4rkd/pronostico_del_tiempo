@@ -27,7 +27,6 @@ api_key = API_KEY_WAPI
 
 input_date= get_date()
 response = request_wapi(api_key,query)
-
 datos = []
 
 for i in tqdm(range(24),colour = 'green'):
@@ -36,9 +35,6 @@ for i in tqdm(range(24),colour = 'green'):
 
 
 df_rain = create_df(datos)
-
-# Send Message
-message_id = send_message(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN,input_date,df_rain,query)
-
+message_id = send_message(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN,PHONE_NUMBER,input_date,df_rain,query)
 
 print('Mensaje Enviado con exito ' + message_id)

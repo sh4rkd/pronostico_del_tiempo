@@ -1,7 +1,6 @@
 
 import pandas as pd
 from twilio.rest import Client
-from twilio_config import TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN,PHONE_NUMBER,API_KEY_WAPI
 from datetime import datetime
 import requests
 from requests import Request, Session
@@ -51,15 +50,14 @@ def create_df(data):
 
     return df_rain
 
-def send_message(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN,input_date,df,query):
-
+def send_message(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN,PHONE_NUMBER,input_date,df,query):
     account_sid = TWILIO_ACCOUNT_SID
     auth_token = TWILIO_AUTH_TOKEN
 
     client = Client(account_sid, auth_token)
 
     message = client.messages \
-                    .create(
+                .create(
                         body='\nHola! \n\n\n El pronostico de lluvia hoy '+ input_date +' en ' + query +' es : \n\n\n ' + str(df),
                         from_=PHONE_NUMBER,
                         to='+523111285778'
